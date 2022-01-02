@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adonis js </title>
+    <link href="/css/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/fontAwesomeAll.min.css" />
+
+
+</head>
+
+<body>
+
+    <nav class="w-full  bg-white shadow-md border flex justify-center px-4 py-2">
+
+        <div class="w-1/2 flex justify-between" style="">
+            <h1 class="text-xl font-semibold">
+                <a href="/">Adonis js </a>
+            </h1>
+            <div>
+
+                @if(auth.isLoggedIn)
+                <!-- This example requires Tailwind CSS v2.0+ -->
+                <div class="relative inline-block text-left">
+                    <div id="dropdown" class="cursor-pointer outline-none focus-none">
+                        <img src="http://localhost:3333/{{auth.user.avatar}}" class="h-8 w-8 rounded-full border"
+                            alt="profile">
+                    </div>
+                    <div id="dropdown-items"
+                        class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            <a href="/{{auth.user.username}}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b border-t"
+                                role="menuitem">Profile</a>
+                            <form action="/logout" method="post">
+                                {{csrfField()}}
+                                <button type="submit"
+                                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                    role="menuitem">
+                                    Sign out
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="relative inline-block text-gray-600 text-left">
+                    <div>
+                        <a href="/login" class="">Login</a>
+                        /
+                        <a href="/signup" class="">sign up</a>
+                    </div>
+                </div>
+
+                @endif
+
+
+            </div>
+        </div>
+    </nav>
+    <div class="bg-gray-100 min-h-screen flex justify-center">
+        <div class="w-full md:w-1/2">
+            @section('content')
+            @endsection
+        </div>
+    </div>
+    <script src="/js/sweetalert2.all.min.js"></script>
+    <script>
+        const dropdown = document.getElementById('dropdown')
+        const item = document.getElementById('dropdown-items')
+        dropdown.addEventListener('click',()=>{
+            if(item.classList.contains('hidden')){
+                item.classList.remove('hidden')
+            }else{
+                item.classList.add('hidden')
+            }
+        })
+     window.Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+    </script>
+
+    @if(flashMessages.has('success'))
+    <script>
+        Toast.fire({
+             icon: 'success',
+             title:'{{flashMessages.get('success')}}'
+            })
+    </script>
+    @endif
+</body>
+
+</html>

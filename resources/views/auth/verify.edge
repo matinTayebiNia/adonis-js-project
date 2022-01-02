@@ -1,0 +1,18 @@
+@layout('layout/app')
+@section('content')
+
+<section class="flex justify-center py-10">
+    <div style="width:22rem;">
+        <article class="border bg-white px-10 py-6">
+            <p class="py-5 px-3 text-sm  text-center text-gray-500">
+                please verify you email address . if you not resive verify email push button on below
+            </p>
+            <form action="/verify-email" method="post">
+                {{csrfField()}}
+                <input type="submit" class="bg-blue-600 text-white rounded border
+                mt-2 border-gray-400  px-2 py-1 my-1 w-full" value="resend verify Email">
+            </form>
+        </article>
+    </div>
+</section>
+@endsection

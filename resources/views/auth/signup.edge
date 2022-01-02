@@ -1,0 +1,66 @@
+@layout('layout/app')
+@section('content')
+    <section class="flex justify-center  py-10">
+        <div class="" style="width:22rem;">
+        <article  class="border bg-white px-10 py-6">
+            <h1 class="text-4xl text-center">adonis js </h1>
+            <p class="text-center font-bold py-5 px-3 text-sm   text-gray-500 " >Lorem ipsum dolor sit amet consectetur, </p>
+            <p class="text-center text-sm text-gray-500  py-4" >----- Register -----</p>
+            <form method="post" action="/signup">
+                {{csrfField()}}
+                <div>                
+                    <input placeholder="FullName" value=""
+                     class=" text-sm placeholder-gray-500 
+                     border-gray-400 bg-gray-200 rounded-sm  
+                     border px-2 py-2 my-1 w-full" type="text" name="name" id="name">
+                    @if(flashMessages.has("errors.name"))
+                    <span class="text-red-500 text-xs text-left " >{{flashMessages.get("errors.name")}}</span>
+                    @endif
+                </div>
+            <div>
+            
+                <input placeholder="email" class=" text-sm placeholder-gray-500 bg-gray-200 rounded-sm border border-gray-400 px-2 py-2 my-1 w-full" type="email" name="email" id="email">
+                @if(flashMessages.has("errors.email"))
+                <span class="text-red-500 text-xs text-left " >{{flashMessages.get("errors.email")}}</span>
+                @endif
+            </div>
+            <div>
+                <input placeholder="username"
+                 class=" text-sm placeholder-gray-500 bg-gray-200 rounded-sm 
+                 border border-gray-400 px-2 py-2 my-1 w-full" type="text" 
+                 name="username" id="username">
+                @if(flashMessages.has("errors.username"))
+                <span class="text-red-500 text-xs text-left " >
+                    {{flashMessages.get("errors.username")}}</span>
+                @endif
+            </div>
+            
+            <div>
+            
+                <input placeholder="password" class=" text-sm placeholder-gray-500 bg-gray-200 rounded-sm border border-gray-400 px-2 py-2 my-1 w-full" type="password" name="password" id="password">
+                @if(flashMessages.has("errors.password"))
+                <span class="text-red-500 text-xs text-left " >{{flashMessages.get("errors.password")}}</span>
+                @endif
+            </div>
+            <div>
+                <input placeholder="confirmation password" class=" text-sm placeholder-gray-500 bg-gray-200 rounded-sm border border-gray-400 px-2 py-2 my-1 w-full" type="password" name="password_confirmation" id="password_confirmation">
+                @if(flashMessages.has("errors.password_confirmation"))
+                <span class="text-red-500 text-xs text-left " >{{flashMessages.get("errors.password_confirmation")}}</span>
+                @endif
+            </div>
+            <div>
+                <input type="submit"
+                 class="bg-blue-600 text-white rounded border
+                  mt-2 border-gray-400  px-2 py-1 my-1 w-full" value="sign Up">
+            </div>
+            </form>
+            <p class="py-5 px-3 text-xs  text-center text-gray-500">
+                Lorem ipsum dolor sit amet consectetur, 
+            </p>
+    </article>
+        <article class="border mt-5 py-8 text-center bg-white ">
+            you have an account?<a href="/login" class="text-blue-600">click here</a>
+        </article>
+        </div>
+    </section>
+@endsection

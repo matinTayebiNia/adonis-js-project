@@ -1,0 +1,50 @@
+@layout('layout/app')
+@section('content')
+    <section class="flex justify-center py-10">
+        <div class="" style="width:22rem;">
+            <article class="border bg-white px-10 py-6">
+                <h1 class="text-4xl py-4 px-3 text-center">adonis js </h1>
+                <p class="text-center text-sm text-gray-500  py-4" >----- Login -----</p>
+
+                    <form action="/login" method="post" >
+                        {{csrfField()}}
+                        <div>
+                        <input type="email" name="email" 
+                        class=" text-sm placeholder-gray-500 
+                        border-gray-400 bg-gray-200 rounded-sm  
+                        border px-2 py-2 my-1 w-full"
+                        placeholder="enter email"
+                        value="{{flashMessages.get("email")?flashMessages.get("email"):""}}" id="email">
+                        @if(flashMessages.has("errors.email"))
+                            <span class="text-red-500 text-xs text-left " >{{flashMessages.get("errors.email")}}</span>
+                        @endif
+                    </div>
+                    <div>
+                        <input type="password" placeholder="enter password"
+                         name="password" 
+                         class=" text-sm placeholder-gray-500 
+                         border-gray-400 bg-gray-200 rounded-sm  
+                         border px-2 py-2 my-1 w-full"
+                          id="password">
+                        @if(flashMessages.has("errors.password"))
+                            <span class="text-red-500 text-xs text-left " >{{flashMessages.get("errors.password")}}</span>
+                        @endif
+                    </div>
+                    <div>  
+                        <input type="submit" 
+                        class="bg-blue-600 text-white rounded border
+                        mt-2 border-gray-400  px-2 py-1 my-1 w-full"
+                        value="login">
+                    </div>
+                </form>
+                <p class="py-5 px-3 text-xs  text-center text-gray-500">
+                    Lorem ipsum dolor sit amet consectetur, 
+                </p>
+            </article>
+            <article class="border mt-5 py-8 text-center bg-white ">
+                dont have an account?<a href="/signup" class="text-blue-600">click here</a>
+            </article>
+        </div>
+    </section>
+    
+ @endsection
